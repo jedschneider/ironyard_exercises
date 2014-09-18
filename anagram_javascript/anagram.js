@@ -1,52 +1,54 @@
-function anagram( match ){
-
-  var _match = anagramSubject( match )
-
-  return { matches: matches }
-
-  function matches(arr) {
-    arr = ( (arr instanceof Array) ? arr : _toArray(arguments) )
-    return arr.map( toSubject )
-              .filter( uniq )
-              .filter( isMatch )
-              .map( fromSubject )
-  }
-
-  // helpers
-  function uniq( word )         { return !_match.sameWord( word ) }
-  function isMatch( word )      { return _match.isMatch( word ) }
-  function toSubject( word )    { return anagramSubject( word ) }
-  function fromSubject( word )  { return word.original() }
-}
-
-module.exports = anagram
+module.exports = anagram 
 
 
-function anagramSubject( word ){
+function anagram(word){
+  // console.log(word)
+
+  splitAndSort = function(element) {
+      // console.log(element)
+      // console.log(word)
+      // console.log(element.split("").sort())
+      // console.log(word.split("").sort())
+      return element.toLowerCase().split("").sort().join("") == word.toLowerCase().split("").sort().join("") && element.toLowerCase() != word.toLowerCase()
+      
+    };
 
   return {
-    fingerprint: canonicalize( word ),
 
-    lowerCased: word.toLowerCase(),
+    // matches: function (subjects) {
+    //   // console.log(word)
+    //   if (typeof subjects === 'object') {
+    //     var output = subjects.filter(splitAndSort);
+    //     // console.log(output)
+    //     return output
+    //   }
+    //   else {
+    //     var output = []
+    //     console.log(subjects)
+    //     if (splitAndSort(subjects)) {
+    //       output.push(subjects) 
+    //     };
+    //     return output
+    //   };
 
-    isMatch: function( otherWord ){
-      return this.fingerprint === otherWord.fingerprint
-    },
+    // }
+    
+    matches: function () {
+      // console.log(word)
+      if(arguments.length > 1) {
+        var output = [];
+        var args = Array.prototype.slice.call(arguments);
+        output = args.filter(splitAndSort);
+      }   
+      else {
+        var output = arguments[0].filter(splitAndSort);
+        // console.log(output)
+      
+      }
+      return output
 
-    original: function(){ return word },
-
-    sameWord: function( otherWord ){
-      return this.lowerCased === otherWord.lowerCased
     }
+
   }
 
-  function canonicalize( str ){
-    return str.toLowerCase().split('').sort().join('')
-  }
-}
-
-function _toArray(args){
-  return Array.prototype.slice.call(args)
-}
-
-
+};
