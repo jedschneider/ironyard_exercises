@@ -1,3 +1,21 @@
+# My solution
+class Anagram
+  def initialize(subject)
+    @subject = subject
+  end
+
+  def match(list)
+    @anagrams = []
+    list.each do |x|
+      if x.downcase == @subject.downcase
+      elsif x.downcase.chars.sort == @subject.downcase.chars.sort
+        @anagrams.unshift(x)
+      end
+    end
+    @anagrams
+  end
+end
+
 # Imperative
 #
 class Anagram
