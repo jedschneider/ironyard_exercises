@@ -48,5 +48,3 @@ function anagramSubject( word ){
 function _toArray(args){
   return Array.prototype.slice.call(args)
 }
-
-
