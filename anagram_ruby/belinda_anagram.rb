@@ -2,14 +2,14 @@ class Anagram
   def initialize (gram)
     @word = gram
   end
-  def match (match_word)
+  def match (match_words)
     word_array=[]
-    match_word.each do |popcorn|
-      if @word.downcase == popcorn.downcase
+    match_words.each do |match_word|
+      if @word.downcase == match_word.downcase
       #checking to see if word 1 matches word 2
-      elsif @word.downcase.chars.sort == popcorn.downcase.chars.sort
-      word_array.push(popcorn)
-      #breaking the word into character and adding word 2 to the blank array if it matches the characters in word 1
+      elsif @word.downcase.chars.sort == match_word.downcase.chars.sort
+      word_array.push(match_word)
+      #breaking the word into characters and adding word 2 to the blank array if it matches the characters in word 1
       end
     end
     word_array
