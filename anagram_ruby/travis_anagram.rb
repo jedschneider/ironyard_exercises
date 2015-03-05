@@ -36,3 +36,42 @@ class Anagram
     return possibles
   end
 end
+
+
+# Object-Oriented
+#
+class Anagram
+
+  attr_accessor :target
+
+  def initialize(target)
+    self.target = AnagramTerm.new(target)
+  end
+
+  def match(possibles)
+    # I wasn't aware of the select method - very concise!
+    possibles.select { |possible| self.target == AnagramTerm.new(possible) }
+  end
+end
+
+class AnagramTerm
+
+  attr_accessor :orig
+  attr_accessor :sorted
+
+  # grab the original and sorted (both downcased) terms
+  def initialize(term)
+    self.orig = term.downcase
+    self.sorted = self.orig.chars.sort.join
+  end
+
+  # A term is an anagram of another term if the sum of chars is equal
+  # to the other term (easy check if we except many failures) and the
+  # sorted term is equal to the sorted other_term
+  def ==(other)
+    if other.is_a?(AnagramTerm)
+      return ( self.sorted == other.sorted ) && ( self.orig != other.orig )
+    end
+    Raise("No equals? method defined for type: #{other.class}")
+  end
+end
