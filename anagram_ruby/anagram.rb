@@ -1,68 +1,66 @@
 # Imperative
 #
-class Anagram
 
-  def initialize(word)
-    @match = word.downcase
-  end
-
-  def match(arr)
-    result = []
-    arr.each do |word|
-      downcased = word.downcase
-      matcher = @match.chars.sort
-      unless @match == downcased
-        result << word if matcher == downcased.chars.sort
-      end
-    end
-    result
-  end
-end
+# class String
+#   def anagram_of? other_word
+#     other_word = other_word.downcase
+#     lower_self = downcase
+#     lower_self != other_word && lower_self.chars.sort == other_word.chars.sort
+#   end
+# end
+#
+# class Anagram
+#
+#   def initialize(word)
+#     @match = word.downcase
+#   end
+#
+#   def match(arr)
+#     arr.select do |word|
+#       word.anagram_of?(@match)
+#     end
+#   end
+# end
 
 # OO version
-class Anagram
-
-  def initialize(word)
-    @word = AnagramSubject.new(word)
-  end
-
-  def match(arr)
-    arr.select {|word| @word.anagram_of?(word) }
-  end
-end
-
-class AnagramSubject
-  attr_reader :word
-
-  def initialize(word)
-    @word = word.downcase
-  end
-
-  def anagram_of?(word)
-    subject = klass.new(word)
-    return false if duplicate?(subject)
-    fingerprint == subject.fingerprint
-  end
-
-  def fingerprint
-    @fingerprint ||= canonicalize(@word)
-  end
-
-  private
-
-  def duplicate?(subject)
-    @word == subject.word
-  end
-
-  def canonicalize(word)
-    word.chars.sort
-  end
-
-  def klass
-    self.class
-  end
-
-end
+# class Anagram
+#
+#   def initialize(word)
+#     @word = AnagramSubject.new(word)
+#   end
+#
+#   def match(arr)
+#     arr.select {|word| @word.anagram_of?(word) }
+#   end
+# end
+#
+# class AnagramSubject
+#   attr_reader :word
+#
+#   def initialize(word)
+#     @word = word.downcase
+#   end
+#
+#   def anagram_of?(word)
+#     subject = AnagramSubject.new(word)
+#     !duplicate_of?(subject) && (fingerprint == subject.fingerprint)
+#   end
+#
+#   def fingerprint
+#     @fingerprint ||= canonicalize(@word)
+#   end
+#
+#   private
+#
+#   def duplicate_of?(subject)
+#     @word == subject.word
+#   end
+#
+#   def canonicalize(word)
+#     word.chars.sort
+#   end
+#
+# end
 
 # functional
 #
@@ -72,40 +70,36 @@ class Anagram
   end
 
   def match(arr)
-    arr.inject({}, &to_hash)
+    arr.inject({}, &hash_of_match_data)
        .reject(&duplicates)
        .select(&fingerprints)
-       .map(&from_hash)
+       .keys
   end
 
   def fingerprint(word)
     word.downcase.chars.sort
   end
 
-  def to_hash
+  def hash_of_match_data
     matcher = fingerprint(@word)
 
-    ->(memo, word) {
+    ->(result_hash, potential_anagram) {
       obj = {
-        fingerprint: fingerprint(word),
+        fingerprint: fingerprint(potential_anagram),
         matcher: matcher
       }
-      memo[word] = obj
-      memo
+      result_hash[potential_anagram] = obj
+      result_hash
     }
   end
 
   def duplicates
     downcased = @word.downcase
-    ->(key, value) { downcased == key.downcase }
+    ->(potential_anagram, _value) { downcased == potential_anagram.downcase }
   end
 
   def fingerprints
-    ->(key, value) { value[:matcher] == value[:fingerprint] }
-  end
-
-  def from_hash
-    ->((key, value)) { key }
+    ->(_potential_anagram, match_data) { match_data[:matcher] == match_data[:fingerprint] }
   end
 
 end
