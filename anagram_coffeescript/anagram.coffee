@@ -92,8 +92,7 @@ class AnagramSubject
 
   isEqual: ( string )->
     anotherWord = new AnagramSubject( string )
-    return false if @word == anotherWord.word
-    @fingerprint() == anotherWord.fingerprint()
+    @word != anotherWord.word && @fingerprint() == anotherWord.fingerprint()
 
 class Anagram
 
