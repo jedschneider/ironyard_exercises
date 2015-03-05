@@ -75,3 +75,32 @@ class AnagramTerm
     Raise("No equals? method defined for type: #{other.class}")
   end
 end
+
+
+# Functional
+#
+class Anagram
+
+  attr_accessor :target
+
+  def initialize(target)
+    self.target = target
+  end
+
+  # 1) reject non-matching sums
+  # 2) select sorted matches
+  # 3) reject exact matches
+  def match(possibles)
+    possibles.reject { |possible| sum(possible) != sum(self.target) }
+      .select { |possible| sorted(possible) == sorted(self.target) }
+      .reject { |possible| possible.downcase == self.target.downcase }
+  end
+
+  def sorted(term)
+    term.downcase.chars.sort.join
+  end
+
+  def sum(term)
+    term.downcase.sum
+  end
+end
