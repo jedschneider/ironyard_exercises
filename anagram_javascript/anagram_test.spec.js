@@ -1,4 +1,4 @@
-var anagram = require('./anagram');
+var anagram = require('./travis_anagram');
 
 describe('Anagram', function() {
 
