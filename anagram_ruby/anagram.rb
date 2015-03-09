@@ -29,5 +29,50 @@ class Anagram
     end
 end
 
-#
+#OOP
+
+class Anagram
+
+  def initialize(word)
+    @original_word = word.downcase
+  end
+
+  def match(array)
+
+  end
+
+end
+
+class AnagramSubject
+
+  def subject(word)
+    @word = word.
+  end
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
