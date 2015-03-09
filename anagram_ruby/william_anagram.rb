@@ -1,5 +1,5 @@
-# Imperative
-#
+Imperative
+
 class Anagram
 
 
@@ -17,4 +17,10 @@ class Anagram
     end
     @cats
   end
+end
+
+class Anagram
+
+attr_reader :iguana
+
 end
