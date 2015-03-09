@@ -1,26 +1,16 @@
 var _ = require('./underscore.js');
 
-var testing = function(child, parent){
+// accepts a child array and parent array
+function isSubset(child, parent){
+  // loops through child array
   for(var childIndex in child){
+    console.log(parent[0]);console.log(child[childIndex]);
+    console.log(_.include(parent,child[childIndex]));
+    // checks if child instance exists in parent array and removes from parent
     if(_.include(parent,child[childIndex])){parent.splice(_.indexOf(parent, child[childIndex]), 1);}
     else{return false;}
   }
   return true;
-};
+}
 
-
-// Checks if subset works
-child = [1];
-parent = [1,2];
-console.log(testing(child, parent));
-
-// Checks if subset doesn't pass positive with wrong number
-child = [3];
-parent = [1,2];
-console.log(testing(child, parent));
-
-// Checks if subset doesn't pass positive with same numbers
-child = [1,1,1];
-parent = [1,2];
-console.log(testing(child, parent));
-
+module.exports = isSubset;

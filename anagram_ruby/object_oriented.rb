@@ -32,11 +32,3 @@ class Anagram < Word
     return return_arr
   end
 end
-
-
-
-# Pseudo Testing -
-# detector2 = Word.new('hello')
-detector = Anagram.new('hello')
-# detector.test
-detector.match(['elloh', 'woot'])

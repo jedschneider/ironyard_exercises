@@ -22,11 +22,4 @@ var anagram = function(string){
   return new thing(string);
 };
 
-
-
-
-var subject = anagram('diaper');
-var matches = subject.matches(['hello', 'world', 'zombies', 'pants', 'diaper', 'daiper']);
-console.log(matches);
-console.log(matches.join() === [ 'daiper' ].join());
-
+module.exports = anagram;
