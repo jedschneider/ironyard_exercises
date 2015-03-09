@@ -18,3 +18,7 @@ class Anagram
 end
 
 #Object-oriented
+
+class Anagram
+  def initailize word
+    @word = 
