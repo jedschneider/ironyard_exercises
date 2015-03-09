@@ -1,11 +1,11 @@
 # Imperative
 
 class Anagram
-  def initialize(word)
+  def initialize word
     @the_word = word
   end
 
-  def match(match)
+  def match match
     @results = []
     match.each do |wordmatch|
       if @the_word.downcase == wordmatch.downcase
@@ -16,3 +16,5 @@ class Anagram
     @results
   end
 end
+
+#Object-oriented
