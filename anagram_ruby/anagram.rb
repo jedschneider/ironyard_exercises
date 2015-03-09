@@ -2,8 +2,12 @@
 #
 class Anagram
 
-  def initialize(word)
-    @match = word.downcase
+  # def initialize(word)
+  #   @match = word.downcase
+  # end
+
+  def initialize(iguana)
+    @match = iguana.downcase
   end
 
   def match(arr)

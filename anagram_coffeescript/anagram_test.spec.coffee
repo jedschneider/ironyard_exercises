@@ -1,4 +1,4 @@
-Anagram = require "./anagram" 
+Anagram = require "./william" 
 describe "Anagram", ->
   it "no matches", ->
     detector = new Anagram "diaper"
