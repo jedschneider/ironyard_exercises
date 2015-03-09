@@ -1,111 +1,78 @@
-# Imperative
-#
+#Imperative - With an imperative approach, a developer writes code that describes in exacting detail the steps that the computer must take to accomplish the goal.
+
+#Functional - a functional approach involves composing the problem as a set of functions to be executed.
+
 class Anagram
 
-  def initialize(word)
-    @match = word.downcase
-  end
+  attr_accessor :original_word
 
-  def match(arr)
-    result = []
-    arr.each do |word|
-      downcased = word.downcase
-      matcher = @match.chars.sort
-      unless @match == downcased
-        result << word if matcher == downcased.chars.sort
-      end
+    def initialize(word)
+      self.original_word = word.downcase
     end
-    result
-  end
+    
+    def match(array)
+      anagram_array = []
+        x = 0
+      while x < array.length do
+        current_word = array[x]
+        test_word = current_word.downcase
+          if test_word != original_word
+            if test_word.length == original_word.length
+              if test_word.chars.sort == original_word.chars.sort
+                anagram_array << current_word
+              end
+            end
+          end
+        x +=1
+      end
+      anagram_array 
+    end
 end
 
-# OO version
+#OOP
+
 class Anagram
 
   def initialize(word)
-    @word = AnagramSubject.new(word)
+    @original_word = word.downcase
   end
 
-  def match(arr)
-    arr.select {|word| @word.anagram_of?(word) }
+  def match(array)
+
   end
+
 end
 
 class AnagramSubject
-  attr_reader :word
 
-  def initialize(word)
-    @word = word.downcase
-  end
-
-  def anagram_of?(word)
-    subject = klass.new(word)
-    return false if duplicate?(subject)
-    fingerprint == subject.fingerprint
-  end
-
-  def fingerprint
-    @fingerprint ||= canonicalize(@word)
-  end
-
-  private
-
-  def duplicate?(subject)
-    @word == subject.word
-  end
-
-  def canonicalize(word)
-    word.chars.sort
-  end
-
-  def klass
-    self.class
+  def subject(word)
+    @word = word.
   end
 
 end
 
-# functional
-#
-class Anagram
-  def initialize(word)
-    @word = word
-  end
 
-  def match(arr)
-    arr.inject({}, &to_hash)
-       .reject(&duplicates)
-       .select(&fingerprints)
-       .map(&from_hash)
-  end
 
-  def fingerprint(word)
-    word.downcase.chars.sort
-  end
 
-  def to_hash
-    matcher = fingerprint(@word)
 
-    ->(memo, word) {
-      obj = {
-        fingerprint: fingerprint(word),
-        matcher: matcher
-      }
-      memo[word] = obj
-      memo
-    }
-  end
 
-  def duplicates
-    downcased = @word.downcase
-    ->(key, value) { downcased == key.downcase }
-  end
 
-  def fingerprints
-    ->(key, value) { value[:matcher] == value[:fingerprint] }
-  end
 
-  def from_hash
-    ->((key, value)) { key }
-  end
 
-end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
