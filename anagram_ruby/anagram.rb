@@ -112,72 +112,36 @@
 
 
 
-# O O P
+# Imperative
 
 class Anagram
-
-  def initialize(anagram_word)
-    @word = AnagramSubject.new(anagram_word)
-  end
-
-  def match(arr)
-    arr.select {|word| @word.anagram_of?(word) }
-  end
-end
-
-class AnagramSubject
-  attr_reader :word
-
-  def initialize(word)
-    @word = word.downcase
-  end
-
-  def anagram_of?(word)
-    subject = klass.new(word)
-    return false if duplicate?(subject)
-    fingerprint == subject.fingerprint
-  end
-
-  def fingerprint
-    @fingerprint ||= canonicalize(@word)
-  end
-
-  private
-
-  def duplicate?(subject)
-    @word == subject.word
-  end
-
-  def canonicalize(word)
-    word.chars.sort
-  end
-
-  def klass
-    self.class
-  end
-
-end
-
-
-# class Anagram
   
-#   def initialize (new_anagram)
-#     @word = new_anagram
-#   end
+  def initialize (new_anagram)
+    @word = new_anagram
+  end
   
-#   def match (same_word)
-#     words = []
-#     same_word.each do |same|
+  def match (same_word)
+    words = []
+    same_word.each do |same|
       
-#       if @word.downcase == same_word.downcase
-#       elsif @word.downcase.chars.sort == same_word.downcase.chars.sort
-#         words.push(same_word)
-#       end          
+      if @word.downcase == same.downcase
+      elsif @word.downcase.chars.sort == same.downcase.chars.sort
+        words.push(same)
+      end          
   
-#     end
+    end
   
-#     words
+    print "Base anagram word:" 
+    puts @word
+    print "Matching anagrams:"
+    puts words
+    print "All words:"
+    p same_word
+    return words
   
-#   end
+  end
 
-# end
+end
+
+detector = Anagram.new('school')
+detector.match(['school', 'dropout', 'loohcs'])
