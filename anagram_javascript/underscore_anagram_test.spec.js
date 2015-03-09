@@ -1,4 +1,4 @@
-var anagram = require('./anagram');
+var anagram = require('./underscore_anagram');
 
 describe('Anagram', function() {
 

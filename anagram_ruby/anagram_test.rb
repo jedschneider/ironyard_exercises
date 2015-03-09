@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative 'travis_anagram'
+require_relative 'anagram'
 
 class AnagramTest < MiniTest::Unit::TestCase
 
