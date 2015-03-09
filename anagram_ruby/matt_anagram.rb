@@ -1,48 +1,48 @@
 
-# # OO version
-# class Anagram
+# OO version
+class Anagram
 
-#   def initialize(word)
-#     @word = AnagramSubject.new(word)
-#   end
+  def initialize(word)
+    @word = AnagramSubject.new(word)
+  end
 
-#   def match(arr)
-#     arr.select {|word| @word.anagram_of?(word) }
-#   end
-# end
+  def match(arr)
+    arr.select {|word| @word.anagram_of?(word) }
+  end
+end
 
-# class AnagramSubject
-#   attr_reader :word
+class AnagramSubject
+  attr_reader :word
 
-#   def initialize(word)
-#     @word = word.downcase
-#   end
+  def initialize(word)
+    @word = word.downcase
+  end
 
-#   def anagram_of?(word)
-#     subject = klass.new(word)
-#     return false if duplicate?(subject)
-#     fingerprint == subject.fingerprint
-#   end
+  def anagram_of?(word)
+    subject = klass.new(word)
+    return false if duplicate?(subject)
+    fingerprint == subject.fingerprint
+  end
 
-#   def fingerprint
-#     @fingerprint ||= canonicalize(@word)
-#   end
+  def fingerprint
+    @fingerprint ||= canonicalize(@word)
+  end
 
-#   private
+  private
 
-#   def duplicate?(subject)
-#     @word == subject.word
-#   end
+  def duplicate?(subject)
+    @word == subject.word
+  end
 
-#   def canonicalize(word)
-#     word.chars.sort
-#   end
+  def canonicalize(word)
+    word.chars.sort
+  end
 
-#   def klass
-#     self.class
-#   end
+  def klass
+    self.class
+  end
 
-# end
+end
 
 # # functional
 # #
