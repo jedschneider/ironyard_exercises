@@ -1,23 +1,3 @@
-# # Imperative
-# #
-# class Anagram
-
-#   def initialize(word)
-#     @match = word.downcase
-#   end
-
-#   def match(arr)
-#     result = []
-#     arr.each do |word|
-#       downcased = word.downcase
-#       matcher = @match.chars.sort
-#       unless @match == downcased
-#         result << word if matcher == downcased.chars.sort
-#       end
-#     end
-#     result
-#   end
-# end
 
 # # OO version
 # class Anagram
