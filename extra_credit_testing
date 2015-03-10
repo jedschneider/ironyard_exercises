@@ -1,0 +1,67 @@
+array1 = [
+  { name: 'John', age: 25},
+  { name: 'Jane', age: 58},
+  { name: 'Josh', age: 12}
+]
+
+array2 = [
+  { name: 'Jane', age: 58},
+  { name: 'John', age: 25}
+]
+
+array3 = [
+  { name: 'John', age: 25},
+  { name: 'Jane', age: 58}           
+]
+
+# puts array1[0]
+
+#testing
+if array1 [0] != array2 [0]
+  puts "the zero-index hash object within array1 is not equal to the zero-index object with array2"
+end
+
+if array1 [0] == array2 [0]
+  puts "the zero-index hash object within array1 is equal to the zero-index object within array2"
+end
+
+if array1 [1] != array2 [0]
+  puts "the one-index hash object within array1 is not equal to the zero-index hash object of array2"
+end
+
+if array1 [1] == array2 [0]
+  puts "the one-index hash object within array1 is equal to the zero-index hash object of array2"
+end
+
+# create an array of all the arrays involved
+totalArray = [[array1], [array2], [array3]]
+
+# testing
+puts totalArray
+
+# use a uniqueArray to collect unique hash objects
+uniqueArray = []
+
+x = 0
+y = 0
+
+array1.any?{ |i| i[array2]}
+
+totalArray.each do |t|
+  sampleArray = t
+  sampleArray.each do |s|
+    uniqueArray.each do |u|
+    if s[x] != u[y]
+      puts "I found this unique hash"
+      puts s[x]
+      uniqueArray.push s[x]
+      if sampleArray.length >= uniqueArray.length
+        puts "#{s} contains all the objects of #{u}"
+      puts "sampleArray is #{sampleArray}"
+      puts "uniqueArray is #{uniqueArray}"
+      y += 1
+    end
+    x += 1
+  end
+end
+end
